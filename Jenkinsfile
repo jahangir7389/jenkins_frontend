@@ -7,14 +7,14 @@ pipeline {
     stage('Build') {
 			steps {
 				
-					sh 'docker build -t frontend-app .'
+					sh 'docker build -t jahangir7389/frontend-app .'
 				
 			} 
 		}
     stage('Test') {
       steps {
 			
-				sh 'docker container run --rm -p 8001:8080 --name node -d frontend-app' 
+				sh 'docker container run --rm -p 8001:8080 --name node -d jahangir7389/frontend-app' 
 				sh 'sleep 5'
 				sh 'curl -I http://localhost:8001'
 			
@@ -24,7 +24,7 @@ pipeline {
 			steps{
 				script {
 					docker.withRegistry( '', registryCredential ) {
-						sh 'docker push frontend-app:latest'
+						sh 'docker push jahangir7389/frontend-app:latest'
 					} 
 				}
 			} 
