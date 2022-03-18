@@ -6,18 +6,16 @@ pipeline {
   stages {
     stage('Build') {
 			steps {
-				dir('jenkins_frontend'){
 					sh 'docker build -t jenkins_frontend .'
 				}
-			} 
 		}
     stage('Test') {
       steps {
-			dir('jenkins_frontend'){
+			
 				sh 'docker container run --rm -p 8001:8080 --name node -d jenkins_frontend' 
 				sh 'sleep 5'
 				sh 'curl -I http://localhost:8001'
-			}
+			
 		} 
 	}
     stage('Publish') {
