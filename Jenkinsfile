@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-		registryCredential = 'DOCKERHUB_TOKEN' 
+		registryCredential = 'dokerhub' 
 	}
   stages {
     stage('Build') {
